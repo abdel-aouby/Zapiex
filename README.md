@@ -1,3 +1,3 @@
 # Aouby_Zapiex module
 
-A ready-made wrapper module to deal with zapiex endpoint and aliexpress scrapping
+A ready-made wrapper module to deal with zapiex api enpoints and aliexpress scrapping
