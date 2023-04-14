@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference
+        for="Aouby\Zapiex\Api\Categories\ProductCategoriesInterface"
+        type="Aouby\Zapiex\Model\Categories\ProductCategories"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Categories\SearchCategoriesInterface"
+        type="Aouby\Zapiex\Model\Categories\SearchCategories"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Endpoint\RequestInterface"
+        type="Aouby\Zapiex\Model\Endpoint\Request"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Product\ProductInterface"
+        type="Aouby\Zapiex\Model\Product\Product"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Product\ReviewsInterface"
+        type="Aouby\Zapiex\Model\Product\Reviews"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Product\ShippingInterface"
+        type="Aouby\Zapiex\Model\Product\Shipping"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Search\ProductsByCategoryInterface"
+        type="Aouby\Zapiex\Model\Search\ProductsByCategory"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Search\ProductsByStoreInterface"
+        type="Aouby\Zapiex\Model\Search\ProductsByStore"/>
+
+    <preference
+        for="Aouby\Zapiex\Api\Search\ProductsByTextInterface"
+        type="Aouby\Zapiex\Model\Search\ProductsByText"/>
+
+</config>
