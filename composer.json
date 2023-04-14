@@ -1,0 +1,25 @@
+{
+    "name": "Aouby/zapiex",
+    "description": "Module consuming zapiex API endpoints",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Abdel Aouby",
+            "email": "abdelmajid.aouby@gmail.com"
+        }
+    ],
+    "require": {
+        "magento/magento-composer-installer": "*"
+    },
+    "type": "magento2-module",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Aouby\\Zapiex\\": ""
+        }
+    }
+
+}
