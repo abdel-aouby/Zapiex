@@ -6,6 +6,7 @@ namespace Aouby\Zapiex\Model\Search;
 
 use Aouby\Zapiex\Api\Endpoint\RequestInterface;
 use Aouby\Zapiex\Api\Search\ProductsByStoreInterface;
+use Magento\Framework\Exception\InputException;
 
 class ProductsByStore implements ProductsByStoreInterface
 {
@@ -25,6 +26,26 @@ class ProductsByStore implements ProductsByStoreInterface
      */
     public function execute(string $storeId): array
     {
-        // TODO: Implement execute() method.
+        if (empty($productId)) {
+            throw new InputException(__('Store ID must be specified.'));
+        }
+
+        $url = '';
+
+        $data = [
+            'storeId' => $storeId,
+            'text' => '',
+            'currency' => '',
+            'locale' => '',
+            'sort' => '',
+            'page' => 1,
+        ];
+
+        $auth = [
+            'name' => '',
+            'key' => '',
+        ];
+
+        return $this->endpointRequest->execute($url, true, $auth, $data);
     }
 }

@@ -6,6 +6,7 @@ namespace Aouby\Zapiex\Model\Search;
 
 use Aouby\Zapiex\Api\Endpoint\RequestInterface;
 use Aouby\Zapiex\Api\Search\ProductsByCategoryInterface;
+use Magento\Framework\Exception\InputException;
 
 class ProductsByCategory implements ProductsByCategoryInterface
 {
@@ -25,6 +26,34 @@ class ProductsByCategory implements ProductsByCategoryInterface
      */
     public function execute(string $categoryId): array
     {
-        // TODO: Implement execute() method.
+        if (empty($productId)) {
+            throw new InputException(__('Category ID must be specified.'));
+        }
+
+        $url = '';
+
+        $data = [
+            'searchCategoryId' => $categoryId,
+            'shipFrom' => '',
+            'shipTo' => '',
+            'sort' => '',
+            'page' => 1,
+        ];
+
+        $minPrice = '';
+        $maxPrice = '';
+        if ($minPrice && $maxPrice && $minPrice < $maxPrice) {
+            $data['priceRange'] = [
+                'from' => $minPrice,
+                'to' => $maxPrice,
+            ];
+        }
+
+        $auth = [
+            'name' => '',
+            'key' => '',
+        ];
+
+        return $this->endpointRequest->execute($url, true, $auth, $data);
     }
 }

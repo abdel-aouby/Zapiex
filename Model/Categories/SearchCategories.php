@@ -25,6 +25,7 @@ class SearchCategories implements SearchCategoriesInterface
      */
     public function execute(): array
     {
-        // TODO: Implement execute() method.
+        $url = '';
+        return $this->endpointRequest->execute($url, false);
     }
 }

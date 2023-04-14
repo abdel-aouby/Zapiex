@@ -6,6 +6,7 @@ namespace Aouby\Zapiex\Model\Search;
 
 use Aouby\Zapiex\Api\Endpoint\RequestInterface;
 use Aouby\Zapiex\Api\Search\ProductsByTextInterface;
+use Magento\Framework\Exception\InputException;
 
 class ProductsByText implements ProductsByTextInterface
 {
@@ -25,6 +26,34 @@ class ProductsByText implements ProductsByTextInterface
      */
     public function execute(string $text): array
     {
-        // TODO: Implement execute() method.
+        if (empty($productId)) {
+            throw new InputException(__('Search text must be specified.'));
+        }
+
+        $url = '';
+
+        $data = [
+            'text' => $text,
+            'shipFrom' => '',
+            'shipTo' => '',
+            'sort' => '',
+            'page' => 1,
+        ];
+
+        $minPrice = '';
+        $maxPrice = '';
+        if ($minPrice && $maxPrice && $minPrice < $maxPrice) {
+            $data['priceRange'] = [
+                'from' => $minPrice,
+                'to' => $maxPrice,
+            ];
+        }
+
+        $auth = [
+            'name' => '',
+            'key' => '',
+        ];
+
+        return $this->endpointRequest->execute($url, true, $auth, $data);
     }
 }

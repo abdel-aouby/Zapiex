@@ -25,6 +25,7 @@ class ProductCategories implements ProductCategoriesInterface
      */
     public function execute(): array
     {
-        // TODO: Implement execute() method.
+        $url = '';
+        return $this->endpointRequest->execute($url, false);
     }
 }

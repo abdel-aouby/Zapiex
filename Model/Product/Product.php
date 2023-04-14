@@ -6,6 +6,7 @@ namespace Aouby\Zapiex\Model\Product;
 
 use Aouby\Zapiex\Api\Endpoint\RequestInterface;
 use Aouby\Zapiex\Api\Product\ProductInterface;
+use Magento\Framework\Exception\InputException;
 
 class Product implements ProductInterface
 {
@@ -25,6 +26,25 @@ class Product implements ProductInterface
      */
     public function execute(string $productId): array
     {
-        // TODO: Implement execute() method.
+        if (empty($productId)) {
+            throw new InputException(__('Product ID must be specified.'));
+        }
+
+        $url = '';
+
+        $data = [
+            'productId' => $productId,
+            'shipTo' => '',
+            'getSellerDetails' => true,
+            'getShipping' => true,
+            'getHtmlDescription' => true,
+        ];
+
+        $auth = [
+            'name' => '',
+            'key' => '',
+        ];
+
+        return $this->endpointRequest->execute($url, true, $auth, $data);
     }
 }
