@@ -4,10 +4,22 @@ declare(strict_types=1);
 
 namespace Aouby\Zapiex\Model\Product;
 
+use Aouby\Zapiex\Api\Endpoint\RequestInterface;
 use Aouby\Zapiex\Api\Product\ProductInterface;
 
 class Product implements ProductInterface
 {
+    private RequestInterface $endpointRequest;
+
+    /**
+     * @param RequestInterface $endpointRequest
+     */
+    public function __construct(
+        RequestInterface $endpointRequest
+    ) {
+        $this->endpointRequest = $endpointRequest;
+    }
+
     /**
      * @inheritDoc
      */
