@@ -19,7 +19,7 @@ class ProductsByText implements ProductsByTextInterface
     ) {
         $this->endpointRequest = $endpointRequest;
     }
-    
+
     /**
      * @inheritDoc
      */
