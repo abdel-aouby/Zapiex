@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Aouby\Zapiex\Model\Endpoint;
 
 use Aouby\Zapiex\Api\Endpoint\RequestInterface;
+use LogicException;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\HTTP\Client\Curl;
 use Magento\Framework\Serialize\SerializerInterface;
@@ -32,15 +33,17 @@ class Request implements RequestInterface
      */
     public function execute(
         string $url,
-        array $data,
-        array $auth,
-        bool $isPostRequest = true
+        bool $isPostRequest = true,
+        array $auth = [],
+        array $data = []
     ): array {
         if ($isPostRequest) {
             return $this->postRequest($url, $data, $auth);
         }
 
-        // Get method
+        if (empty($data)) {
+            throw new LogicException(__('Data parameters are not allowed in GET method.'));
+        }
         return $this->getRequest($url);
     }
 
@@ -102,11 +105,11 @@ class Request implements RequestInterface
         if (!isset($result['statusCode']) || (int) $result['statusCode'] !== 200) {
             throw new LocalizedException(
                 __(
-                    'Failed to send zapiex API request: ' . $url . '. ' .
-                    '(Status code : ' . $result['statusCode'] . '). ' .
-                    '(Error type : ' . $result['errorType'] . '). ' .
-                    '(Error message : ' . $result['errorMessage'] . '). ' .
-                    '(Request ID : ' . $result['requestId'] . ').'
+                    'Failed to send zapiex API request: ' . $url . '. ' . PHP_EOL .
+                    '(Request ID : ' . $result['requestId'] . ').' . PHP_EOL .
+                    '(Status code : ' . $result['statusCode'] . '). ' . PHP_EOL .
+                    '(Error type : ' . $result['errorType'] . '). ' . PHP_EOL .
+                    '(Error message : ' . $result['errorMessage'] . '). ' . PHP_EOL
                 )
             );
         }
