@@ -1,4 +1,4 @@
-This is abandoned and read-only repo because zapiex API is no longer active and has been shutdown.
+This is abandoned and read-only repo and should NEVER be used anymore, because zapiex API is no longer active and has been shutdown.
 
 # Zapiex module
 
